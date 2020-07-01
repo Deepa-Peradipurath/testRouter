@@ -1,3 +1,4 @@
+console.log("push worker....")
 // 86acbd31cd7c09cf30acb66d2fbedc91daa48b86:1592930351.4338496
 importScripts('https://aswpsdkus.com/notify/v1/ua-sdk.min.js')
 uaSetup.worker(self, {

@@ -42,7 +42,7 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-load-script',
       options: {
-        src: '/test-script.js, /push-worker.js', // Change to the script filename
+        src: '/test-script.js', // Change to the script filename
       },
     },
   ],
