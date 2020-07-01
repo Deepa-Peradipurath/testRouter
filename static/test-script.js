@@ -11,5 +11,51 @@ a.rel=t,r.head.appendChild(a)}(window,document,'https://aswpsdkus.com/notify/v1/
 
     vapidPublicKey: 'BLtcWuvBDJ9viHwUn6OC8pPsarmu1TB_Q7HX6jmSs_n4eiedQZmDNylkllYMifMcCaRsZhAumdqwQBBjqlEKpPY=',
     appKey: 'hFUnvMjKRL2xhZm9gDckdw',
-    token: 'MTpoRlVudk1qS1JMMnhoWm05Z0Rja2R3OmE5Z21QVnFlb3JkRGZYV0NtOWN6UFdlQ2NFcDZhdmVHSUhxaFNLUHFlTVE'
+    token: 'MTpoRlVudk1qS1JMMnhoWm05Z0Rja2R3OmE5Z21QVnFlb3JkRGZYV0NtOWN6UFdlQ2NFcDZhdmVHSUhxaFNLUHFlTVE',
+    workerUrl: 'push-worker.js'
   });
+
+  document.getElementById('register').addEventListener('click', function(){
+    console.log("register ********")
+    console.log(UA);
+   UA.then(function(sdk) {
+      	sdk.register();
+	
+	console.log(sdk.channel.id);
+	document.getElementById('channelId').innerHTML = sdk.channel.id;
+
+	console.log(sdk.channel.optedIn);
+
+	console.log('done');
+
+		sdk.addEventListener('channel', function(ev) {
+            console.log("channel ********")
+    		ev.channel === sdk.channel;
+			var namedUser = '09110810';
+			sdk.channel.namedUser.set(namedUser); 
+			ev.channel.namedUser.set(namedUser); 
+			console.log('named user: '+sdk.channel.namedUser.id);
+
+		});
+
+     })
+   });
+
+   document.getElementById('optout').addEventListener('click', function(){
+    console.log(UA);
+    UA.then(function(sdk) {
+           sdk.channel.optOut();
+     
+     console.log(sdk.channel.optedIn);
+ 
+     console.log('done');
+ 
+      })
+    });
+    document.getElementById('optin_status').addEventListener('click', function(){
+        console.log(UA);
+        UA.then(function(sdk) {
+           console.log(sdk.channel.optedIn);
+         document.getElementById('statusArea').innerHTML = sdk.channel.optedIn;
+          })
+        });
